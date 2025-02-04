@@ -14,10 +14,13 @@ public class StockService {
     }
 
     public void decrease(Long id, Long quantity) {
-        // Stock 조회
-        // 재고 감소 후
-        // 갱신된 값을 저장
-
+        // 1. Stock 조회
+        // 2. 재고 감소 후
+        // 3. 갱신된 값을 저장
         Stock stock = stockRepository.findById(id).orElseThrow();
+        stock.decrease(quantity);
+
+        stockRepository.saveAndFlush(stock);
     }
+
 }
